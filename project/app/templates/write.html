@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 상단 네비게이션바(피그마 - Rectangle 3) 부분 -->
+    <nav class="nav_bar">
+        <div class="header">
+            <button class="home_button">MYLOG</button>
+            <span class="menu">
+                <a href="">일상</a>
+                <a href="">요리</a>
+                <a href="">여행</a>
+                <a href="">영화</a>
+                <a href="">IT</a>
+            </span>
+            <button class="login_button">Logout</button>
+            <button class="just_wirte_button">Just Write!</button>
+        </div>
+    </nav>
+
+    <!-- 글 작성 부분 -->
+    <main>
+        <!-- (피그마 - Rectangle 1) -->
+        <div class="write_container">
+            <!-- 컨텐츠 작성 부분(중앙 좌측) -->
+            <div class="write_left">
+                <input type="text" class="write_title">
+
+                <!-- (피그마 - Rectangle 6) -->
+                <div class="write_content_container">
+                    <div class="write_content_button">제목 + 글꼴지정 + 글 작성</div>
+                    <textarea name="write_content" id="write_content" cols="30" rows="10">내용 작성</textarea>
+                </div>
+            </div>
+
+            
+            <!-- 컨텐츠 작성 부분(중앙 우측) -->
+            <div class="write_right">
+                <button class="making_ai_content">AI 글 자동완성</button>
+
+                <div class="topic">
+                    <input type="radio" name="type_3" value="normal" checked>
+                    <label for="type_3_!">일상</label>
+                    <input type="radio" name="type_3" value="normal" checked>
+                    <label for="type_3_!">요리</label>
+                    <input type="radio" name="type_3" value="normal" checked>
+                    <label for="type_3_!">여행</label>
+                    <input type="radio" name="type_3" value="normal" checked>
+                    <label for="type_3_!">영화</label>
+                    <input type="radio" name="type_3" value="normal" checked>
+                    <label for="type_3_!">IT / 전자기기</label>
+                </div>
+
+                <div class="upload_info">
+                    <div class="upload_staus">상태</div>
+                    <a href="">이미지 업로드</a>
+                    <div>
+                        <button class="save">임시저장</button>
+                        <button class="upload">글 작성</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- (피그마 - Rectangle 7) -->
+        <div class="bottom">
+            bottom
+        </div>
+    </main>
+</body>
+</html>
