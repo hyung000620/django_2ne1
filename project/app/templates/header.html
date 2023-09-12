@@ -1,0 +1,18 @@
+{% load static %}
+<div class="header" style="background: #1E1E1E;">
+    <img src="{% static 'img/083.svg' %}">
+    <button onclick="location.href='{% url 'admin' %}" class="home_button">MYLOG</button>
+    <span class="menu">
+        <a href="">일상</a>
+        <a href="">요리</a>
+        <a href="">여행</a>
+        <a href="">영화</a>
+        <a href="">IT</a>
+    </span>
+    {% if is_logined %}
+    <button onclick="location.href='{% url 'index' %}'" class="login_button">Logout</button>
+    <button onclick="location.href='{% url 'write' %}'" class="just_wirte_button">Just Write! </button>
+    {% else %}
+    <button onclick="location.href='{% url 'login' %}'" class="just_wirte_button">Login</button>
+    {% endif %}
+</div>

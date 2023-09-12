@@ -5,32 +5,20 @@ from .serializers import UserSerializer, PostSerializer
 import random
 # Create your views here.
 def index(request):
-    return render(request, 'index.html')
+    is_logined = False
+    return render(request, 'index.html',{"is_logined":is_logined})
+def admin(request):
+    is_logined = True
+    return render(request, 'index.html', {"is_logined":is_logined})
 
-
-def board(request):
-    return render(request, 'board.html')
-
-def login_page(request):
-    return render(request, 'login.html')
-
-def board_client(request):
-    return render(request, 'board_client.html')
-
-def client_board(request):
-    return render(request, 'client_board.html')
-
-def board_admin(request):
-    return render(request, 'board_admin.html')
-
-def admin_board(request):
-    return render(request, 'admin_board.html')
+def login(request):
+    return render(request, 'user/login.html')
 
 def write(request):
-    return render(request, 'write.html')
+    return render(request, 'post/write.html')
 
 def post(request):
-    return render(request, 'post.html')
+    return render(request, 'post/post.html')
 
 class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
