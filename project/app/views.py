@@ -1,5 +1,8 @@
-from django.shortcuts import render
-
+from django.shortcuts import render, redirect
+from rest_framework import viewsets
+from .models import User, Post
+from .serializers import UserSerializer, PostSerializer
+import random
 # Create your views here.
 def index(request):
     is_logined = False
@@ -16,3 +19,11 @@ def write(request):
 
 def post(request):
     return render(request, 'post/post.html')
+
+class UserViewSet(viewsets.ModelViewSet):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+
+class PostViewSet(viewsets.ModelViewSet):
+    queryset = Post.objects.all()
+    serializer_class = PostSerializer
