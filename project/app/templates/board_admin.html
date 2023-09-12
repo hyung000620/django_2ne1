@@ -4,14 +4,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/style.css">
     <title>Document</title>
 </head>
 
 <body>
-    <!-- 상단 네비게이션바 (피그마 - Rectangle 3) 부분 -->
+    <!-- 상단 네비게이션바(피그마 - Rectangle 3) 부분 -->
     <nav class="nav_bar">
         <div class="header">
-            <button class="home_button">MYLOG</button>
+            <a href="" class="home_button">
+                <img src="./img/083.svg" alt="MYLOG">
+                <span class="home_button_text">MYLOG</span>
+            </a>
             <span class="menu">
                 <a href="">일상</a>
                 <a href="">요리</a>
@@ -19,27 +23,29 @@
                 <a href="">영화</a>
                 <a href="">IT</a>
             </span>
-            <button class="login_button">Logout</button>
-            <button class="just_wirte_button">Just Write!</button>
-        </div>
-
-        <!-- 가장 조회수 높은 컨텐츠 (피그마 - Rectangle 10) -->
-        <div class="top">
-            <div class="main_title">Main Title</div>
-            <div class="main_content">Main Content</div>
-            <button>Read More</button>
+            <div class="nav_buttons">
+                <a href="" class="logout_button">Logout</a>
+                <button class="just_wirte_button">Just Write!</button>
+            </div>
         </div>
     </nav>
 
 
     <!-- 컨텐츠 부분 -->
     <main>
-        <!-- 피드 리스트 (피그마 - Rectangle 1) -->
+        <!-- 가장 조회수 높은 컨텐츠 부분(피그마 - Rectangle 10) -->
+        <div class="top">
+            <div class="main_title">Main Title</div>
+            <div class="main_content">Main Content</div>
+            <button>Read More</button>
+        </div>
+
+        <!-- 피드 리스트 부분(피그마 - Rectangle 1) -->
         <div class="feed_container">
             <div class="feed">feed</div>
         </div>
 
-        <!-- (피그마 - Rectangle 7) -->
+        <!-- 컨텐츠 부분(피그마 - Rectangle 7) -->
         <div class="bottom">
             bottom
         </div>
