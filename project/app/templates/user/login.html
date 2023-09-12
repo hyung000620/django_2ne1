@@ -7,12 +7,11 @@
 </head>
 <body>
     <h1>Login</h1>
-    <form method="POST">
+    <form method="POST" action="{% url 'admin' %}">
         {% csrf_token %}
         <input type="text" name="id">
         <input type="password" name="password">
         <button type="submit">Login</button>
     </form>
-  <a href="{% url 'admin_board' %}" class="btn">admin-login</a>
 </body>
 </html>
