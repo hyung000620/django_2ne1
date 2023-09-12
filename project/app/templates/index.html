@@ -6,6 +6,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="{% static '/css/header.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static '/css/footer.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static '/css/board.css' %}">
     <title>Document</title>
 </head>
 <body>
@@ -14,18 +16,51 @@
     </header>
     <main>
         <div class="top">
-            <div class="main_title">Main Title</div>
-            <div class="main_content">Main Content</div>
-            <button>Read More</button>
+            <div class="main_text">
+                <div class="main_title">Lorem ipsum dolor</div>
+                <div class="main_content">Lorem ipsum dolor sit amet consectetur. Non pretium arcu praesent cursus aliquam pellentesque. Euismod consectetur fames vitae nunc gravida morbi felis porttitor integer. Ridiculus id purus feugiat et mi justo scelerisque euismod euismod. Turpis dictumst luctus nisi placerat purus dolor luctus vitae pretium. Gravida faucibus scelerisque quis mi consequat malesuada.</div>
+                <div class="read_more">Read More</div>
+            </div>
+            <img src="{% static 'img/board_sample1.svg' %}">
         </div>
         <!-- 피드 리스트 (피그마 - Rectangle 1) -->
         <div class="feed_container">
-            <div class="feed">feed</div>
-        </div>
-
-        <!-- (피그마 - Rectangle 7) -->
-        <div class="bottom">
-            bottom
+            <div class="feed">
+                <img src="{% static 'img/board_sample2.svg' %}">
+                <p class="feed_date">2023-09-07 12:13:01</p>
+                <p class="feed_title">Lorem ipsum dolor</p>
+                <p class="feed_content">Lorem ipsum dolor sit amet consectetur. Non pretium arcu praesent cursus aliquam pellentesque. Euismod consectetur fames vitae nunc gravida morbi felis porttitor integer. Ridiculus id purus feugiat et mi justo</p>
+            </div>
+            <div class="feed">
+                <img src="{% static 'img/board_sample3.svg' %}">
+                <p class="feed_date">2023-09-07 12:13:01</p>
+                <p class="feed_title">Lorem ipsum dolor</p>
+                <p class="feed_content">Lorem ipsum dolor sit amet consectetur. Non pretium arcu praesent cursus aliquam pellentesque. Euismod consectetur fames vitae nunc gravida morbi felis porttitor integer. Ridiculus id purus feugiat et mi justo</p>
+            </div>
+            <div class="feed">
+                <img src="{% static 'img/board_sample4.svg' %}">
+                <p class="feed_date">2023-09-07 12:13:01</p>
+                <p class="feed_title">Lorem ipsum dolor</p>
+                <p class="feed_content">Lorem ipsum dolor sit amet consectetur. Non pretium arcu praesent cursus aliquam pellentesque. Euismod consectetur fames vitae nunc gravida morbi felis porttitor integer. Ridiculus id purus feugiat et mi justo</p>
+            </div>
+            <div class="feed">
+                <img src="{% static 'img/board_sample2.svg' %}">
+                <p class="feed_date">2023-09-07 12:13:01</p>
+                <p class="feed_title">Lorem ipsum dolor</p>
+                <p class="feed_content">Lorem ipsum dolor sit amet consectetur. Non pretium arcu praesent cursus aliquam pellentesque. Euismod consectetur fames vitae nunc gravida morbi felis porttitor integer. Ridiculus id purus feugiat et mi justo</p>
+            </div>
+            <div class="feed">
+                <img src="{% static 'img/board_sample3.svg' %}">
+                <p class="feed_date">2023-09-07 12:13:01</p>
+                <p class="feed_title">Lorem ipsum dolor</p>
+                <p class="feed_content">Lorem ipsum dolor sit amet consectetur. Non pretium arcu praesent cursus aliquam pellentesque. Euismod consectetur fames vitae nunc gravida morbi felis porttitor integer. Ridiculus id purus feugiat et mi justo</p>
+            </div>
+            <div class="feed">
+                <img src="{% static 'img/board_sample4.svg' %}">
+                <p class="feed_date">2023-09-07 12:13:01</p>
+                <p class="feed_title">Lorem ipsum dolor</p>
+                <p class="feed_content">Lorem ipsum dolor sit amet consectetur. Non pretium arcu praesent cursus aliquam pellentesque. Euismod consectetur fames vitae nunc gravida morbi felis porttitor integer. Ridiculus id purus feugiat et mi justo</p>
+            </div>
         </div>
     </main>
     <footer>
