@@ -1,17 +1,25 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
 </head>
 <body>
-    <h1>Login</h1>
-    <form method="POST" action="{% url 'admin' %}">
-        {% csrf_token %}
-        <input type="text" name="id">
-        <input type="password" name="password">
-        <button type="submit">Login</button>
-    </form>
+    <div>
+        <div class='login_text'>Login</div>
+        <form class="login_form" method="POST" action="{% url 'admin' %}">
+            {% csrf_token %}
+            <div class="input_box">
+                <input type="text" name="id">
+            </div>
+            <div class="input_box">
+                <input type="password" name="password">
+            </div>
+            <button class="login_btn" type="submit"><span class="login_btn_text">Login</span></button>
+        </form>
+    </div>
 </body>
 </html>
