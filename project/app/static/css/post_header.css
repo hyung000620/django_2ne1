@@ -1,0 +1,30 @@
+.header{
+    width: 100%;
+    height: 105px;
+    display: flex;
+    justify-content: space-around;
+}
+.mini_header{
+    display: flex;
+    align-items: center;
+    gap:25px;
+}
+.mini_header >p {
+    cursor: pointer;
+}
+.just_wirte_button{
+    width: 100px;
+    height: 39px;
+    border-radius: 2px;
+    background: #1E1E1E;
+    cursor: pointer;
+}
+.just_wirte_button > p{
+    color: #F9F8F4;
+    text-align: center;
+    font-family: Noto Sans KR;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}

@@ -1,14 +1,18 @@
 {% load static %}
 <div class="header">
-    <img src="{% static 'img/084.svg' %}">
-    <button class="home_button">MYLOG</button>
-    <span class="menu">
-        <a href="">일상</a>
-        <a href="">요리</a>
-        <a href="">여행</a>
-        <a href="">영화</a>
-        <a href="">IT</a>
-    </span>
-    <button class="login_button">Logout</button>
-    <button class="just_wirte_button">Just Write!</button>
+    <div>
+        <img src="{% static 'img/084.svg' %}">
+        <p>MYLOG</p>
+    </div>
+    <div class="mini_header">
+        <p>일상</p>
+        <p>요리</p>
+        <p>여행</p>
+        <p>영화</p>
+        <p>IT</p>
+        <p>Logout</p>
+        <div class="just_wirte_button" onclick="location.href='{% url 'write' %}'">
+            <p>Just Write!</p>
+        </div>
+    </div>
 </div>
