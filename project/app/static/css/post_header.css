@@ -1,30 +1,130 @@
-.header{
-    width: 100%;
-    height: 105px;
-    display: flex;
-    justify-content: space-around;
+* {
+    font-family: 'Pretendard', sans-serif;
+    margin: 0;
+    padding: 0;
 }
-.mini_header{
+
+body {
+    padding: 0;
+    margin: 0;
+}
+
+.nav_bar {
     display: flex;
     align-items: center;
-    gap:25px;
+    justify-content: space-between;
+    height: 104px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #1e1e1e;
+    width: 100%;
+    z-index: 999;
+    color: #f9f8f4;
+    text-decoration: none;
+    font-family: 'Pretendard', sans-serif;
 }
-.mini_header >p {
-    cursor: pointer;
+
+.header {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    margin: auto;
 }
-.just_wirte_button{
-    width: 100px;
-    height: 39px;
-    border-radius: 2px;
-    background: #1E1E1E;
-    cursor: pointer;
+
+.header img {
+    width: 174px;
+    height: 67px;
 }
-.just_wirte_button > p{
-    color: #F9F8F4;
-    text-align: center;
-    font-family: Noto Sans KR;
-    font-size: 13px;
-    font-style: normal;
+
+.home_button {
+    position: relative;
+    display: inline-block;
+    margin-left: 208px;
+}
+
+.home_button_text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    background-color: transparent;
+    padding: 4px;
+    font-size: 20px;
+    letter-spacing: -1.4px;
     font-weight: 700;
-    line-height: normal;
+    line-height: 100%;
+    z-index: 1;
+}
+
+
+a {
+    text-decoration: none;
+    font-size: 13px;
+}
+
+a:link {
+    color: #1e1e1e;
+}
+
+a:visited {
+    color: #1e1e1e;
+}
+
+a:hover {
+    color: #1e1e1e;
+}
+
+a:active {
+    color: #1e1e1e
+}
+
+
+.nav_buttons {
+    display: flex;
+    align-items: center;
+    gap: 56px;
+    margin-right: 208px;
+    margin-left: 51px;
+}
+
+.menu {
+    margin-left: auto;
+    display: flex;
+    gap: 40px;
+    white-space: nowrap;
+}
+
+button {
+    cursor: pointer;
+    all: unset;
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+
+.just_wirte_button {
+    display: inline-block;
+    background-color: #1e1e1e;
+    color: white;
+    border-radius: 2px;
+    text-decoration: none;
+    text-align: center;
+    font-weight: bold;
+    padding: 10px 25px;
+}
+
+.just_wirte_button:hover {
+    background-color: #696969;
+    transition: transform 0.8s, background-color 0.3s;
+    color: #ffffff;
+}
+
+.logout_button:hover {
+    color: rgb(255, 162, 162);
+    transition: transform 0.8s, color 0.3s;
 }

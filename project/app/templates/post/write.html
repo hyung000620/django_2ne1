@@ -7,6 +7,8 @@
     <title>Document</title>
     <link rel="stylesheet" href="{% static 'css/post.css' %}">
     <link rel="stylesheet" href="{% static 'css/post_header.css' %}">
+    <link rel="stylesheet" href="{% static 'css/footer.css' %}">
+    <link rel="stylesheet" href="{% static 'css/write.css' %}">
 </head>
 <body>
     <header>
@@ -17,39 +19,55 @@
          <div class="write_container">
             <!-- 컨텐츠 작성 부분(중앙 좌측) -->
             <div class="write_left">
-                <input type="text" class="write_title">
+                <div class="write_title">
+                    <input type="text" name="title" placeholder="제목">
+                </div>
+                
 
                 <!-- (피그마 - Rectangle 6) -->
                 <div class="write_content_container">
-                    <div class="write_content_button">제목 + 글꼴지정 + 글 작성</div>
-                    <textarea name="write_content" id="write_content" cols="30" rows="10">내용 작성</textarea>
+                    <textarea name="write_content" id="write_content" cols="100" rows="20">추후 ckeditor 적용 예정</textarea>
                 </div>
             </div>
 
             
             <!-- 컨텐츠 작성 부분(중앙 우측) -->
             <div class="write_right">
-                <button class="making_ai_content">AI 글 자동완성</button>
-
+                <div class="making_ai_content">
+                    <img src="{% static 'img/Symbols.svg' %}">
+                    <p>AI 글 자동완성</p>
+                </div>
                 <div class="topic">
-                    <input type="radio" name="type_3" value="normal" checked>
-                    <label for="type_3_1">일상</label>
-                    <input type="radio" name="type_3" value="normal" checked>
-                    <label for="type_3_1">요리</label>
-                    <input type="radio" name="type_3" value="normal" checked>
-                    <label for="type_3_1">여행</label>
-                    <input type="radio" name="type_3" value="normal" checked>
-                    <label for="type_3_1">영화</label>
-                    <input type="radio" name="type_3" value="normal" checked>
-                    <label for="type_3_1">IT / 전자기기</label>
+                    <p>TOPIC<p>
+                    <div>
+                        <input type="radio" name="type_3" value="normal" checked>
+                        <label for="type_3_1">일상</label>
+                    </div>   
+                    <div>
+                        <input type="radio" name="type_3" value="normal" checked>
+                        <label for="type_3_1">요리</label>
+                    </div>
+                    <div>
+                        <input type="radio" name="type_3" value="normal" checked>
+                        <label for="type_3_1">여행</label>
+                    </div>
+                    <div>
+                        <input type="radio" name="type_3" value="normal" checked>
+                        <label for="type_3_1">영화</label>
+                    </div>
+                    <div>
+                        <input type="radio" name="type_3" value="normal" checked>
+                        <label for="type_3_1">IT / 전자기기</label>
+                    </div>
                 </div>
 
                 <div class="upload_info">
-                    <div class="upload_staus">상태</div>
-                    <a href="">이미지 업로드</a>
-                    <div>
-                        <button class="save">임시저장</button>
-                        <button class="upload">글 작성</button>
+                    <p>UPLOAD INFO</p>
+                    <div class="upload_staus">상태 : 미게시</div>
+                    <span style="text-decoration: underline;">이미지 업로드</span>
+                    <div style="display:flex; width:100%;justify-content: space-around; margin-top:1em; gap:0.3em">
+                        <div class="save">임시저장</div>
+                        <div onclick="location.href={% url 'post' %}" class="upload">글 작성</div>
                     </div>
                 </div>
             </div>

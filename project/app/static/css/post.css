@@ -2,6 +2,121 @@
     font-family: 'Pretendard', sans-serif;
 }
 
-body{
+body {
     background-color: #f9f8f4;
 }
+.container {
+    padding: 4%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+.main-post {
+    display: flex;
+    gap:30px;
+    justify-content: center;
+}
+.big-post {
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    padding: 1em;
+}
+.main-post > div{
+    border: 1px solid #CAC8C5;
+}
+.post_date{
+    color: #A6A5A1;
+    text-align: center;
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+.post_title{
+    color: #000;
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 700;
+}
+.post_writer{
+    color: #A6A5A1;
+    text-align: center;
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+.post_content{
+    color: #000;
+    font-size: 0.875rem;
+    font-weight: 400;
+    line-height: 1.25rem;
+}
+.post_tag {
+    border-radius: 0.125rem;
+    background: #E1E0DB;
+    align-items: center;
+    width: 40px;
+}
+.other_post_title{
+    color: #1E1E1E;
+    font-size: 1.25rem;
+    font-weight: 700;
+}
+.others{
+    color: #A6A5A1;
+    font-size: 1.5rem;
+    font-weight: 700;
+    width: 50%;
+}
+.others-post{
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+    padding: 1em;
+}
+.others-post>div{
+    border: 1px solid #CAC8C5;
+    padding: 0.1em;
+}
+.update_btn {
+    width: 4.5rem;
+    border-radius: 0.125rem;
+    background: #E1E0DB;
+    text-align: center;
+}
+.delete_btn{
+    width: 4.5rem;
+    border-radius: 0.125rem;
+    background: #1E1E1E;
+    text-align: center;
+    color: white;
+}
+.share_btn{
+    width: 4.5rem;
+    border-radius: 0.125rem;
+    border: 1px solid #D9D9D9;
+    text-align: center;
+}
+.crud_btns{
+    margin-top: 1em;
+    width:50%; 
+    display:flex;
+    gap:10px;
+    justify-content: space-between;
+}
+.story_list {
+    margin-top: 1em;
+    width:50%;
+    display:flex;
+    gap:30px;
+    justify-content: space-between;
+}    
+.next_story,
+.prev_story,
+.next_story_date,
+.prev_story_date{
+    color : #A6A5A1;
+    font-size: 0.9375rem;
+    font-weight: 400;
+    opacity: 0.5;
+}    
