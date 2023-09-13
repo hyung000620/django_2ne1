@@ -1,0 +1,41 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="{% static 'css/signup.css' %}?{% now 'U' %}">
+</head>
+<body>
+    <div>
+        <div class='signup_text'>Sign Up</div>
+        <form class="signup_form" method="POST" action="{% url 'signup' %}">
+            {% csrf_token %}
+            <div class="input_box">
+                <input  type="text" placeholder="name" name="username" id="username" required><br>        
+            </div>
+
+            <div class="input_box">
+                <input type="text" placeholder="id" name="userid" id="userid" required><br>        
+            </div>
+
+            <div class="input_box">
+                <input type="email" placeholder="example@oruemi.com" name="email" id="email" required><br>
+            </div>
+
+            <div class="input_box">
+                <input type="password" placeholder="password" name="password1" id="password1" required><br>    
+            </div>
+
+            <div class="input_box">
+                <input type="password" placeholder="one more" name="password2" id="password2" required><br>
+            </div>
+            <button class="signup_btn" type="submit"><span class="signup_btn_text">Sign Up</span></button>
+            <button class="back_btn" onclick="history.back()"><span class="signup_btn_text">Back!</span></button>
+
+
+        </form>
+    </div>
+</body>
+</html>
