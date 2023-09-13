@@ -1,36 +1,41 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="{% static 'css/post.css' %}?{% now "U" %}">
-    <link rel="stylesheet" href="{% static 'css/post_header.css' %}?{% now "U" %}">
-    <link rel="stylesheet" href="{% static 'css/footer.css' %}?{% now "U" %}">
-    <link rel="stylesheet" href="{% static 'css/write.css' %}?{% now "U" %}">
+    <link rel="stylesheet" href="{% static 'css/post.css' %}?{% now " U" %}">
+    <link rel="stylesheet" href="{% static 'css/post_header.css' %}?{% now " U" %}">
+    <link rel="stylesheet" href="{% static 'css/footer.css' %}?{% now " U" %}">
+    <link rel="stylesheet" href="{% static 'css/write.css' %}?{% now " U" %}">
 </head>
+
 <body>
     <header>
         {% include 'post/header.html' %}
     </header>
     <main>
-         <!-- (피그마 - Rectangle 1) -->
-         <div class="write_container">
+        <!-- (피그마 - Rectangle 1) -->
+        <div class="write_container">
             <!-- 컨텐츠 작성 부분(중앙 좌측) -->
             <div class="write_left">
                 <div class="write_title">
                     <input type="text" name="title" placeholder="제목">
                 </div>
-                
+
 
                 <!-- (피그마 - Rectangle 6) -->
                 <div class="write_content_container">
+                    {% csrf_token %}
+                    {{ form.media }}
+                    {{ form.as_p }}
                     <textarea name="write_content" id="write_content" cols="100" rows="20">추후 ckeditor 적용 예정</textarea>
                 </div>
             </div>
 
-            
+
             <!-- 컨텐츠 작성 부분(중앙 우측) -->
             <div class="write_right">
                 <div class="making_ai_content">
@@ -38,11 +43,12 @@
                     <p>AI 글 자동완성</p>
                 </div>
                 <div class="topic">
-                    <p>TOPIC<p>
+                    <p>TOPIC
+                    <p>
                     <div>
                         <input type="radio" name="type_3" value="normal" checked>
                         <label for="type_3_1">일상</label>
-                    </div>   
+                    </div>
                     <div>
                         <input type="radio" name="type_3" value="normal" checked>
                         <label for="type_3_1">요리</label>
@@ -77,4 +83,5 @@
         {% include 'footer.html' %}
     </footer>
 </body>
+
 </html>
