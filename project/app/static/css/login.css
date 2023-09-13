@@ -56,7 +56,42 @@ body{
     background:transparent;
     border:none;
     border-bottom: solid 1px #ccc;
-    padding:20px 0px 5px 0px;
+    padding:10px 0px 5px 0px;
     font-size:14pt;
     width:100%;
+}
+
+.signin_form {
+    width: 340px;
+    height: 100px;
+    flex-shrink: 0;
+    border-radius: 5px;
+    border: 1px solid #CAC8C5;
+    background: #FFF;
+    display: flex;
+    margin-top: 10px;
+    padding: 10px 0px 10px 0px;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+.signup_btn{
+    display: flex;
+    width: 80px;
+    padding: 11px 82px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: 5px;
+    background: #1E1E1E;
+    cursor: pointer;
+}
+.sign_text {
+    color: #1E1E1E;
+    text-align: center;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 900;
+    line-height: normal;
+    margin-bottom: 10px;
 }
