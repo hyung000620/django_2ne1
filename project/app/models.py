@@ -23,8 +23,8 @@ class Tag(models.Model):
 # 포스트 모델
 class Post(models.Model):
     title = models.CharField(verbose_name="제목", max_length=200)
-    content = models.RichTextField(verbose_name="내용")
-    tags = models.ManyToManyField(Tag, verbose_name="태그")
+    content = RichTextField(verbose_name="내용")
+    tag = models.ManyToManyField(Tag, verbose_name="태그")
     created_at = models.DateTimeField(verbose_name="작성일", auto_now=True)
     updated_at = models.DateTimeField(verbose_name="수정일", blank=True, null=True)
     img = models.ImageField(verbose_name="이미지 파일", upload_to="post_images")
