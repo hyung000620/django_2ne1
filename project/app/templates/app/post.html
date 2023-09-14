@@ -4,28 +4,16 @@
 <html>
   <head>
     <title>{{ post.title }}</title>
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="{% static 'css/reset.css' %}"
-    />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/reset.css' %}"/>
     <link rel="stylesheet" type="text/css" href="{% static 'css/post.css' %}" />
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="{% static 'css/nav_bar_light.css' %}"
-    />
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="{% static 'css/footer.css' %}"
-    />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/nav_bar_light.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/footer.css' %}"/>
   </head>
   <body>
     {% include 'app/nav_bar_light.html' %}
     <div class="container">
       <div class="box-divider">
-        {% comment %} 본문영역 {% endcomment %}
+
         <div class="big-box">
           <div class="post-info">
             <h5>{{ post.created_at }} | {{ post.views }} 조회</h5>
@@ -35,7 +23,7 @@
           </div>
           <div class="post-content">{{ post.content | safe }}</div>
         </div>
-        {% comment %} 추천글 영역 {% endcomment %}
+
         <div class="small-box">
           <div>
             <h3>Other posts</br>you may like</h3>
@@ -53,11 +41,10 @@
       <div class="button-box">
         {% if user.is_authenticated %}
         <div class="box-divider" style="gap:10px">
-            {% comment %} 수정버튼 {% endcomment %}
+
             <a href="{% url 'app:create_or_update_post' post.id %}">
               <button class="edit-button">수정하기</button>
             </a>
-            {% comment %} 삭제버튼 {% endcomment %}
             <form method="POST" action="{% url 'app:post_detail' post.id %}">
               {% csrf_token %}
               <input type="hidden" name="delete-button" value="true">
@@ -65,18 +52,14 @@
             </form>
           </div>
           {% endif %}
-          {% comment %} 공유버튼 {% endcomment %}
           <button class="share-button">공유하기</button>
       </div>
-      <!-- 다음글 표시 -->
       {% if next_post %}
       <div class="another-post-box">
         <div class="post-box">
           <div>다음글</div>
           <div class="post-name">
-            <a href="{% url 'app:post_detail' next_post.id %}"
-              >{{ next_post.title }}</a
-            >
+            <a href="{% url 'app:post_detail' next_post.id %}">{{ next_post.title }}</a>
           </div>
         </div>
         <p>{{ next_post.created_at }}</p>
@@ -91,9 +74,7 @@
         <div class="post-box">
           <div>이전글</div>
           <div class="post-name">
-            <a href="{% url 'app:post_detail' previous_post.id %}"
-              >{{ previous_post.title }}</a
-            >
+            <a href="{% url 'app:post_detail' previous_post.id %}">{{ previous_post.title }}</a>
           </div>
         </div>
         <p>{{ previous_post.created_at }}</p>
@@ -105,11 +86,9 @@
     {% include 'app/footer.html' %}
   </body>
   <script>
-    // 공유하기 버튼 클릭 시
     document.querySelector('.share-button').addEventListener('click', function() {
       let postUrl = window.location.href;
       
-      // 클립보드에 복사
       let tempInput = document.createElement("input");
       document.body.appendChild(tempInput);
       tempInput.value = postUrl;
@@ -117,8 +96,7 @@
       document.execCommand("copy");
       document.body.removeChild(tempInput);
       
-      // 알림 표시
-      alert('포스트 링크가 클립보드에 복사되었습니다');
+      alert('클립보드에 복사되었습니다');
     });
   </script>
 </html>
