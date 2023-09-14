@@ -1,23 +1,24 @@
-from django.urls import path, include
-from rest_framework.routers import DefaultRouter
-from django.contrib.auth import views as auth_views
-from ckeditor_uploader import views as ckeditor_uploader_views
+from django.urls import path
 from . import views
+from django.contrib.auth import views as auth_views
+from django.conf import settings
+from django.conf.urls.static import static
+from .views import image_upload
 
-router = DefaultRouter()
-router.register(r'User', views.UserViewSet)
-router.register(r'Post', views.PostViewSet)
 
+app_name = 'app'
 urlpatterns = [
-    path('', views.index, name='index'),
-    path('login/', auth_views.LoginView.as_view(), name='login'),
+    path('login/', views.custom_login, name='login'),
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
-    path('admin/', views.admin, name='admin'),
-    path('write/', views.write_post, name='write'),
-    path('post/', views.post, name='post'),
-    path('api/', include(router.urls)),
-    path('signup/', views.signup, name='signup'),
+    path('', views.post_list, name='post_list'),
+    path('post_list/<str:topic>/', views.post_list, name='post_list_by_topic'),
+    path('api/blog_posts/', views.BlogPostList.as_view(), name='blogpost-list'),
     path('post/<int:post_id>/', views.post_detail, name='post_detail'),
-    path('post/<int:post_id>/edit/', views.edit_post, name='edit_post'),
-    path('post/<int:post_id>/delete/', views.delete_post, name='delete_post'),
+    path('write/', views.create_or_update_post, name='create_or_update_post'),
+    path('edit_post/<int:post_id>/', views.create_or_update_post, name='create_or_update_post'),
+    path('image-upload/', image_upload.as_view(), name='image_upload'),
+
+    path('autocomplete/', views.autocomplete, name='autocomplete'),
+    path('test/', views.test_view, name='test_view'),
+
 ]
