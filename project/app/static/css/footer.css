@@ -1,4 +1,4 @@
-footer{
+.footer{
     width: 100%;
     background-color: #e7e3da;
     height: 200px;
@@ -7,12 +7,12 @@ footer{
     font-family: 'Pretendard', sans-serif;
 }
 
-footer .container{
+.footer .container{
     align-items: self-end;
     display: flex;
 }
 
-footer .container p{
+.footer .container p{
     color: #1e1e1e;
     justify-content: end;
 }
