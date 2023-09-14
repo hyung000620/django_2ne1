@@ -16,11 +16,3 @@ class BlogPost(models.Model):
         # '..' 문자열이 포함된 content 필드를 변경
         self.content = self.content.replace('"..', '"')
         super().save(*args, **kwargs)
-
-
-
-class ImageId(models.Model):
-    pass
-
-class TitleImageId(models.Model):
-    pass
