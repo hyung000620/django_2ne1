@@ -7,6 +7,7 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/post_list.css' %}"/>
     <link rel="stylesheet" type="text/css" href="{% static 'css/nav_bar.css' %}"/>
     <link rel="stylesheet" type="text/css" href="{% static 'css/footer.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/audio.css' %}">
   </head>
   <body>
     {% include 'app/nav_bar.html' %}
@@ -52,6 +53,12 @@
           </div>
           {% endif %} {% endfor %}
         </div>
+      </div>
+      <div class="music-player">
+        <audio controls>
+          <source src="{% static 'audio/fire.mp3' %}" type="audio/mpeg">
+          Your browser does not support the audio element.
+        </audio>
       </div>
     </div>
     {% include 'app/footer.html' %}
