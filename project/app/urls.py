@@ -19,6 +19,4 @@ urlpatterns = [
     path('image-upload/', image_upload.as_view(), name='image_upload'),
 
     path('autocomplete/', views.autocomplete, name='autocomplete'),
-    path('test/', views.test_view, name='test_view'),
-
 ]
