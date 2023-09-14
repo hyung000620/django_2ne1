@@ -1,6 +1,6 @@
 <div align="center">
   
-![화면 캡처 2023-09-13 100238](https://github.com/hyung000620/django_2ne1/assets/81272766/959d22c1-8ae8-4fe4-b8bd-db9f08b5e5c4)
+![logo_light](https://github.com/hyung000620/django_2ne1/assets/81272766/0d971f18-680a-4dbb-855c-88341546e627)
 
 </div>
 
@@ -28,7 +28,7 @@
 
 ## 📅 개발 기간
 
-2023.09.11(월) ~ 2023.09.21(목)
+2023.09.11(월) ~ 2023.09.19(화)
 
 
 <br />

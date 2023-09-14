@@ -1,0 +1,33 @@
+.music-player {
+    margin-top: 20px;
+    text-align: center;
+}
+
+/* 오디오 컨트롤러 스타일링 */
+.music-player audio {
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto;
+}
+
+.music-player audio[controls]::-webkit-media-controls-play-button,
+.music-player audio[controls]::-webkit-media-controls-pause-button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+.music-player audio[controls]::-webkit-media-controls {
+    display: flex;
+    justify-content: space-between;
+    background-color: #f8f8f8;
+    border-radius: 5px;
+    padding: 5px;
+}
