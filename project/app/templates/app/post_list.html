@@ -64,7 +64,7 @@
         <option value="{% static 'audio/내가제일잘나가.mp3' %}">내가 제일 잘 나가</option>
         <option value="{% static 'audio/너아님안돼.mp3' %}">너 아님 안돼</option>
         <option value="{% static 'audio/lollipop.mp3' %}">Lollipop</option>
-      </select>
+      </select><br>
       <audio controls id="audio-player">
         <source src="{% static 'audio/fire.mp3' %}" type="audio/mpeg">
         Your browser does not support the audio element.
@@ -88,5 +88,6 @@
     audioPlayer.play(); // 선택한 노래 재생
   });
 </script>
-<script src="{% static 'js/chatbot.js' %}"></script>  
+<script src="{% static 'js/chatbot.js' %}"></script>
+
 </html>
