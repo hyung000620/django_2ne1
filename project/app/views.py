@@ -15,6 +15,12 @@ from .models import BlogPost
 
 import openai  # GPT-3 라이브러리
 
+from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.common.by import By
+import time
+
 def custom_login(request):
     if request.user.is_authenticated:
         return redirect('app:post_list')
@@ -142,3 +148,29 @@ def autocomplete(request):
             message = str(e)
         return JsonResponse({"message": message})
     return render(request, 'autocomplete.html')
+
+
+def execute_selenium(request):
+
+    driver = webdriver.Chrome()
+    try:
+        driver.execute_script("window.open('http://127.0.0.1:8000/login');")
+        driver.switch_to.window(driver.window_handles[1])
+        time.sleep(1)
+        username_input = driver.find_element(By.ID, 'id_username')
+        username_input.send_keys("admin")
+        userpw_input = driver.find_element(By.ID, 'id_password')
+        userpw_input.send_keys("1234")
+        username_input.send_keys(Keys.RETURN)
+
+        just_write_button = driver.find_element(By.CLASS_NAME, 'primary-button')
+        just_write_button.click()
+        
+        title = driver.find_element(By.ID, 'title')
+        title.send_keys("test")
+        autocomplete_button = driver.find_element(By.ID, 'aiAutocompleteButton')
+        autocomplete_button.click()
+        time.sleep(30)
+    finally:
+        driver.quit()
+    return render(request, 'app/post_list.html')
