@@ -2,6 +2,7 @@
 <!DOCTYPE html>
 <html>
 
+
 <head>
   <title>블로그홈</title>
   <link rel="stylesheet" type="text/css" href="{% static 'css/reset.css' %}" />
@@ -9,6 +10,7 @@
   <link rel="stylesheet" type="text/css" href="{% static 'css/nav_bar.css' %}" />
   <link rel="stylesheet" type="text/css" href="{% static 'css/footer.css' %}" />
   <link rel="stylesheet" type="text/css" href="{% static 'css/audio.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/chatbot.css' %}">
 </head>
 
 <body>
@@ -69,13 +71,15 @@
       </audio>
     </div>
   </div>
+  {% include 'app/chatbot.html' %}
+
   {% include 'app/footer.html' %}
+
 </body>
 
 <script>
   const songList = document.getElementById("song-list");
   const audioPlayer = document.getElementById("audio-player");
-
   // 노래가 선택되었을 때 이벤트 처리
   songList.addEventListener("change", function () {
     const selectedSong = songList.value;
@@ -84,5 +88,5 @@
     audioPlayer.play(); // 선택한 노래 재생
   });
 </script>
-
+<script src="{% static 'js/chatbot.js' %}"></script>  
 </html>
