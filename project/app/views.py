@@ -21,6 +21,9 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 import time
 
+import json
+from django.http import JsonResponse
+
 def custom_login(request):
     if request.user.is_authenticated:
         return redirect('app:post_list')
@@ -173,4 +176,45 @@ def execute_selenium(request):
         time.sleep(30)
     finally:
         driver.quit()
-    return render(request, 'app/post_list.html')
+
+
+class ChatBot():
+    def __init__(self, model='gpt-3.5-turbo'):
+        self.model = model
+        self.messages = []
+        
+    def ask(self, question):
+        self.messages.append({
+            'role': 'user', 
+            'content': question
+        })
+        res = self.__ask__()
+        return res
+        
+    def __ask__(self):
+        completion = openai.ChatCompletion.create(
+            # model 지정
+            model=self.model,
+            messages=self.messages
+        )
+        response = completion.choices[0].message['content']
+        self.messages.append({
+            'role': 'assistant', 
+            'content': response
+        })
+        return response
+    
+    def show_messages(self):
+        return self.messages
+    
+    def clear(self):
+        self.messages.clear()
+
+def execute_chatbot(request):
+    if request.method == "POST":
+        data = json.loads(request.body.decode('utf-8'))
+        question = data.get('question')
+        chatbot = ChatBot()
+        response = chatbot.ask(question)
+        return JsonResponse({"response": response})
+    return render(request, 'post_list.html')
