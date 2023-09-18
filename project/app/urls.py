@@ -17,6 +17,6 @@ urlpatterns = [
     path('write/', views.create_or_update_post, name='create_or_update_post'),
     path('edit_post/<int:post_id>/', views.create_or_update_post, name='create_or_update_post'),
     path('image-upload/', image_upload.as_view(), name='image_upload'),
-
+    path('post_list/', views.execute_selenium, name="execute_selenium"),
     path('autocomplete/', views.autocomplete, name='autocomplete'),
 ]
