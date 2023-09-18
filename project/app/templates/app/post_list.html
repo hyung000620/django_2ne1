@@ -8,6 +8,7 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/nav_bar.css' %}"/>
     <link rel="stylesheet" type="text/css" href="{% static 'css/footer.css' %}"/>
     <link rel="stylesheet" type="text/css" href="{% static 'css/audio.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/chatbot.css' %}">
   </head>
   <body>
     {% include 'app/nav_bar.html' %}
@@ -61,6 +62,8 @@
         </audio>
       </div>
     </div>
+    {% include 'app/chatbot.html' %}
     {% include 'app/footer.html' %}
   </body>
+<script src="{% static 'js/chatbot.js' %}"></script>  
 </html>
