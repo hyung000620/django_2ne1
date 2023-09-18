@@ -28,7 +28,7 @@
             method: 'POST',
             body: formData,
             headers: {
-              'X-CSRFToken': '{{ csrf_token }}'
+              'X-CSRFToken': '{{csrf_token}}'
             }
           })
           .then(response => response.json())
@@ -142,7 +142,9 @@
                 {% endif %}
               </div>
             </div>
-            
+            <div>
+              <a href="{% url 'app:execute_selenium' %}" class="primary-button" style="color: #e1e0db; width:80%;">AUTO</a>
+            </div>
           </div>
         </form>
         

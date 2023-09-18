@@ -31,3 +31,17 @@
     border-radius: 5px;
     padding: 5px;
 }
+
+/* 노래 선택 드롭다운 스타일 */
+#song-list {
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* 노래 선택 라벨 스타일 */
+label {
+    font-size: 18px;
+    font-weight: bold;
+}
