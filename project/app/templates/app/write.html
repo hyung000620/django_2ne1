@@ -9,6 +9,8 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/write.css' %}"/>
     <link rel="stylesheet" type="text/css" href="{% static 'css/nav_bar_light.css' %}"/>
     <link rel="stylesheet" type="text/css" href="{% static 'css/footer.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/chatbot.css' %}">
+
     <script src="https://cdn.tiny.cloud/1/cig4n9ujjp5wqsgk6jqk8pcfi03mazpxf0hb3h3tz9129744/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
 
     <script>
@@ -142,8 +144,8 @@
                 {% endif %}
               </div>
             </div>
-            <div>
-              <a href="{% url 'app:execute_selenium' %}" class="primary-button" style="color: #e1e0db; width:80%;">AUTO</a>
+            <div onclick="execute_selenium()">
+              <a class="primary-button" style="color: #e1e0db; width:80%;">AUTO</a>
             </div>
           </div>
         </form>
@@ -151,7 +153,35 @@
         <a href="{% url 'app:post_list' %}"></a>
       </div>
     </div>
+
+    {% include 'app/chatbot.html' %}
+    
     {% include 'app/footer.html' %}
 
   </body>
+<script>
+  function getCsrfToken(){return '{{ csrf_token }}';}
+  async function execute_selenium(){
+    const response = await fetch('/execute_selenium/')
+    const data = await response.json();
+    if (data['status'] == 200){
+      location.href = "{% url 'app:post_list' %}";
+    }
+  }
+  async function generateResponse(input) {
+    const response = await fetch('/execute_chatbot/', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-CSRFToken': '{{ csrf_token }}',
+      },
+      body: JSON.stringify({ question: input }),
+    });
+  
+    const data = await response.json();
+    return data;
+  }
+</script>
+<script src="{% static 'js/chatbot.js' %}"></script>  
+
 </html>

@@ -21,6 +21,12 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 import time
 
+import json
+from django.http import JsonResponse
+
+import os
+from pathlib import Path
+
 def custom_login(request):
     if request.user.is_authenticated:
         return redirect('app:post_list')
@@ -128,9 +134,11 @@ class image_upload(View):
         file_url = settings.MEDIA_URL + filename
         return JsonResponse({'location': file_url})
 
+BASE_DIR = Path(__file__).resolve().parent.parent
+SECRETS_DIR = BASE_DIR / '.secret'
+secret = json.load(open(os.path.join(SECRETS_DIR, 'secret.json')))
 
-
-openai.api_key = ''
+openai.api_key = secret['API_KEY']
 
 def autocomplete(request):
     if request.method == "POST":
@@ -167,10 +175,61 @@ def execute_selenium(request):
         just_write_button.click()
         
         title = driver.find_element(By.ID, 'title')
-        title.send_keys("test")
+        title.send_keys("2ne1 노래 리스트")
         autocomplete_button = driver.find_element(By.ID, 'aiAutocompleteButton')
         autocomplete_button.click()
-        time.sleep(30)
+        driver.execute_script("window.scrollBy(0, 300);")
+        time.sleep(10)
+        save_button = driver.find_element(By.CLASS_NAME, 'save-button')
+        save_button.click()
     finally:
-        driver.quit()
-    return render(request, 'app/post_list.html')
+        driver.close()
+        driver.switch_to.window(driver.window_handles[0])
+        driver.get('http://127.0.0.1:8000/')
+        
+    return JsonResponse({"status": 200})
+    
+
+        
+
+
+class ChatBot():
+    def __init__(self, model='gpt-3.5-turbo'):
+        self.model = model
+        self.messages = []
+        
+    def ask(self, question):
+        self.messages.append({
+            'role': 'user', 
+            'content': question
+        })
+        res = self.__ask__()
+        return res
+        
+    def __ask__(self):
+        completion = openai.ChatCompletion.create(
+            # model 지정
+            model=self.model,
+            messages=self.messages
+        )
+        response = completion.choices[0].message['content']
+        self.messages.append({
+            'role': 'assistant', 
+            'content': response
+        })
+        return response
+    
+    def show_messages(self):
+        return self.messages
+    
+    def clear(self):
+        self.messages.clear()
+
+def execute_chatbot(request):
+    if request.method == "POST":
+        data = json.loads(request.body.decode('utf-8'))
+        question = data.get('question')
+        chatbot = ChatBot()
+        response = chatbot.ask(question)
+        return JsonResponse({"response": response})
+    return render(request, 'post_list.html')
