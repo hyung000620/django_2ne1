@@ -71,6 +71,7 @@
       </audio>
     </div>
   </div>
+  
   {% include 'app/chatbot.html' %}
 
   {% include 'app/footer.html' %}
@@ -87,6 +88,19 @@
     audioPlayer.load(); // 선택한 노래로 로드
     audioPlayer.play(); // 선택한 노래 재생
   });
+  async function generateResponse(input) {
+    const response = await fetch('/execute_chatbot/', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-CSRFToken': '{{ csrf_token }}',
+      },
+      body: JSON.stringify({ question: input }),
+    });
+  
+    const data = await response.json();
+    return data;
+  }
 </script>
 <script src="{% static 'js/chatbot.js' %}"></script>  
 </html>
