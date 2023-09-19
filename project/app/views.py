@@ -26,6 +26,7 @@ from django.http import JsonResponse
 
 import os
 from pathlib import Path
+import urllib.request
 
 def custom_login(request):
     if request.user.is_authenticated:
@@ -179,7 +180,7 @@ def execute_selenium(request):
         autocomplete_button = driver.find_element(By.ID, 'aiAutocompleteButton')
         autocomplete_button.click()
         driver.execute_script("window.scrollBy(0, 300);")
-        time.sleep(10)
+        time.sleep(20)
         save_button = driver.find_element(By.CLASS_NAME, 'save-button')
         save_button.click()
     finally:
@@ -233,3 +234,26 @@ def execute_chatbot(request):
         response = chatbot.ask(question)
         return JsonResponse({"response": response})
     return render(request, 'post_list.html')
+
+def img_crawling(request):
+    if request.method == "POST":
+        query = request.POST.get('title')
+        driver = webdriver.Chrome()
+        url = f'https://www.google.com/search?q={query}&tbm=isch'
+
+        driver.get(url)
+
+        num_images_to_download = 1
+
+        for i in range(num_images_to_download):
+            images = driver.find_elements(By.CLASS_NAME,'rg_i')
+            image_url = images[i].get_attribute('src')
+            image_name = f'image_{query}.jpg'
+            urllib.request.urlretrieve(image_url, image_name)
+
+        
+
+        filepath = 'uploads/' + image_name
+        filename = default_storage.save(filepath, open(image_name, 'rb'))
+        file_url = settings.MEDIA_URL + filename
+        return JsonResponse({'location': file_url})
