@@ -64,13 +64,14 @@
         <option value="{% static 'audio/내가제일잘나가.mp3' %}">내가 제일 잘 나가</option>
         <option value="{% static 'audio/너아님안돼.mp3' %}">너 아님 안돼</option>
         <option value="{% static 'audio/lollipop.mp3' %}">Lollipop</option>
-      </select>
+      </select><br>
       <audio controls id="audio-player">
         <source src="{% static 'audio/fire.mp3' %}" type="audio/mpeg">
         Your browser does not support the audio element.
       </audio>
     </div>
   </div>
+  
   {% include 'app/chatbot.html' %}
 
   {% include 'app/footer.html' %}
@@ -87,6 +88,20 @@
     audioPlayer.load(); // 선택한 노래로 로드
     audioPlayer.play(); // 선택한 노래 재생
   });
+  async function generateResponse(input) {
+    const response = await fetch('/execute_chatbot/', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-CSRFToken': '{{ csrf_token }}',
+      },
+      body: JSON.stringify({ question: input }),
+    });
+  
+    const data = await response.json();
+    return data;
+  }
 </script>
-<script src="{% static 'js/chatbot.js' %}"></script>  
+<script src="{% static 'js/chatbot.js' %}"></script>
+
 </html>
