@@ -30,13 +30,17 @@ inputForm.addEventListener('submit', function(event) {
   message.innerHTML = `<p class="chatbot-text" sentTime="${currentTime}">${input}</p>`;
   conversation.appendChild(message);
 
-  const response = generateResponse(input);
-
-  message = document.createElement('div');
-  message.classList.add('chatbot-message','chatbot');
-  message.innerHTML = `<p class="chatbot-text" sentTime="${currentTime}">${response}</p>`;
-  conversation.appendChild(message);
-  message.scrollIntoView({behavior: "smooth"});
+  generateResponse(input)
+    .then(response => {
+      message = document.createElement('div');
+      message.classList.add('chatbot-message','chatbot');
+      message.innerHTML = `<p class="chatbot-text" sentTime="${currentTime}">${response['response']}</p>`;
+      conversation.appendChild(message);
+      message.scrollIntoView({behavior: "smooth"});
+    })
+    .catch(error => {
+      console.error(error);
+    });
 });
 // 추후에 api로 수정
 

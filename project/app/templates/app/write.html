@@ -144,8 +144,8 @@
                 {% endif %}
               </div>
             </div>
-            <div>
-              <a href="{% url 'app:execute_selenium' %}" class="primary-button" style="color: #e1e0db; width:80%;">AUTO</a>
+            <div onclick="execute_selenium()">
+              <a class="primary-button" style="color: #e1e0db; width:80%;">AUTO</a>
             </div>
           </div>
         </form>
@@ -161,6 +161,13 @@
   </body>
 <script>
   function getCsrfToken(){return '{{ csrf_token }}';}
+  async function execute_selenium(){
+    const response = await fetch('/execute_selenium/')
+    const data = await response.json();
+    if (data['status'] == 200){
+      location.href = "{% url 'app:post_list' %}";
+    }
+  }
   async function generateResponse(input) {
     const response = await fetch('/execute_chatbot/', {
       method: 'POST',

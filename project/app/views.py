@@ -24,6 +24,9 @@ import time
 import json
 from django.http import JsonResponse
 
+import os
+from pathlib import Path
+
 def custom_login(request):
     if request.user.is_authenticated:
         return redirect('app:post_list')
@@ -131,9 +134,11 @@ class image_upload(View):
         file_url = settings.MEDIA_URL + filename
         return JsonResponse({'location': file_url})
 
+BASE_DIR = Path(__file__).resolve().parent.parent
+SECRETS_DIR = BASE_DIR / '.secret'
+secret = json.load(open(os.path.join(SECRETS_DIR, 'secret.json')))
 
-
-openai.api_key = ''
+openai.api_key = secret['API_KEY']
 
 def autocomplete(request):
     if request.method == "POST":
@@ -170,12 +175,22 @@ def execute_selenium(request):
         just_write_button.click()
         
         title = driver.find_element(By.ID, 'title')
-        title.send_keys("test")
+        title.send_keys("2ne1 노래 리스트")
         autocomplete_button = driver.find_element(By.ID, 'aiAutocompleteButton')
         autocomplete_button.click()
-        time.sleep(30)
+        driver.execute_script("window.scrollBy(0, 300);")
+        time.sleep(10)
+        save_button = driver.find_element(By.CLASS_NAME, 'save-button')
+        save_button.click()
     finally:
-        driver.quit()
+        driver.close()
+        driver.switch_to.window(driver.window_handles[0])
+        driver.get('http://127.0.0.1:8000/')
+        
+    return JsonResponse({"status": 200})
+    
+
+        
 
 
 class ChatBot():
