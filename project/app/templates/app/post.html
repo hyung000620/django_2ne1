@@ -8,6 +8,8 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/post.css' %}" />
     <link rel="stylesheet" type="text/css" href="{% static 'css/nav_bar_light.css' %}"/>
     <link rel="stylesheet" type="text/css" href="{% static 'css/footer.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/chatbot.css' %}">
+
   </head>
   <body>
     {% include 'app/nav_bar_light.html' %}
@@ -83,6 +85,9 @@
       <div class="another-post-box"></div>
       {% endif %}
     </div>
+
+    {% include 'app/chatbot.html' %}
+
     {% include 'app/footer.html' %}
   </body>
   <script>
@@ -98,5 +103,20 @@
       
       alert('클립보드에 복사되었습니다');
     });
+    async function generateResponse(input) {
+      const response = await fetch('/execute_chatbot/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-CSRFToken': '{{ csrf_token }}',
+        },
+        body: JSON.stringify({ question: input }),
+      });
+    
+      const data = await response.json();
+      return data;
+    }
   </script>
+  <script src="{% static 'js/chatbot.js' %}"></script>  
+
 </html>
