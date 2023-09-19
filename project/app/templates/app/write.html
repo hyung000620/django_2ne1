@@ -40,7 +40,7 @@
           .catch(error => console.error('Error:', error));
         });
     
-        // AI 글 자동완성
+        // AI 글 자동완성 및 이미지 크롤링
         document.getElementById('aiAutocompleteButton').addEventListener('click', function() {
           // 로딩 애니메이션 
           document.getElementById('loading-animation').style.display = 'block';
@@ -48,28 +48,45 @@
 
           let title = document.getElementById('title').value;
           fetch('/autocomplete/', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/x-www-form-urlencoded',
-              'X-CSRFToken': '{{ csrf_token }}',
-            },
-            body: new URLSearchParams({
-              'title': title
-            })
+              method: 'POST',
+              headers: {
+                  'Content-Type': 'application/x-www-form-urlencoded',
+                  'X-CSRFToken': '{{ csrf_token }}',
+              },
+              body: new URLSearchParams({
+                  'title': title
+              })
           })
           .then(response => response.json())
           .then(data => {
-            document.getElementById('loading-animation').style.display = 'none';
-            document.getElementById('ai-img').style.display = 'block';
-        
-            //기존 내용에 자동완성 된 내용 더함
-            let currentContent = tinyMCE.activeEditor.getContent();
-          data.message = data.message.replace(/\n/g, '<br>');
-          tinyMCE.activeEditor.setContent(currentContent + data.message);
+              document.getElementById('loading-animation').style.display = 'none';
+              document.getElementById('ai-img').style.display = 'block';
+
+              // 기존 내용에 자동완성 된 내용 더함
+              let currentContent = tinyMCE.activeEditor.getContent();
+              data.message = data.message.replace(/\n/g, '<br>');
+              tinyMCE.activeEditor.setContent(currentContent + data.message);
+
+              // 이미지 크롤링
+              let formData = new FormData();
+              formData.append('title', title);
+
+              fetch('/image_crawl/', {
+                  method: 'POST',
+                  body: formData,
+                  headers: {
+                     'X-CSRFToken': '{{csrf_token}}'
+                  }
+              })
+              .then(response => response.json())
+              .then(data => {
+                  tinyMCE.activeEditor.insertContent(`<img src="${data.location}"/>`);
+              })
+              .catch(error => console.error('Error:', error));
           })
           .catch(error => {
-            console.error('Error:', error);
-            document.getElementById('loading-animation').style.display = 'none';
+              console.error('Error:', error);
+              document.getElementById('loading-animation').style.display = 'none';
           });
         });
       });
@@ -162,12 +179,13 @@
 <script>
   function getCsrfToken(){return '{{ csrf_token }}';}
   async function execute_selenium(){
-    const response = await fetch('/execute_selenium/')
+    const response = await fetch('/execute_selenium/');
     const data = await response.json();
+    
     if (data['status'] == 200){
       location.href = "{% url 'app:post_list' %}";
     }
-  }
+}
   async function generateResponse(input) {
     const response = await fetch('/execute_chatbot/', {
       method: 'POST',
